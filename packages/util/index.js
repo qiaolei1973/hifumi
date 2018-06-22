@@ -1,1 +1,1 @@
-export default () => { console.log('hello lerna') };
+export default () => { console.log('hello lerna!') };
