@@ -2,8 +2,16 @@
   "name": "@hifumi/ui",
   "version": "0.0.1",
   "description": "react ui compoents",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
+    "clear-es": "rm -rf ./es",
+    "clear-lib": "rm -rf ./lib",
+    "clear-dist": "rm -rf ./dist",
+    "clear-all": "npm run clear-es && npm run clear-lib && npm run  clear-dist",
+    "build-es": "tsc",
+    "build-lib": "babel es -d lib",
+    "build-all": "npm run build-es && npm run build-lib",
+    "prepublish": "npm run clear-all && npm run build-all",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,6 +23,10 @@
     "react",
     "component"
   ],
+  "files": [
+    "lib",
+    "es"
+  ],
   "author": "qiaolei",
   "license": "MIT",
   "bugs": {
@@ -25,5 +37,9 @@
     "antd": "^3.6.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1"
   }
 }
