@@ -1,0 +1,61 @@
+0 silly input [ 'publish' ]
+1 silly flags { _: [ 'publish' ],
+1 silly flags   'reject-cycles': false,
+1 silly flags   rejectCycles: false,
+1 silly flags   force: true }
+2 verbose rootPath /Users/qiaolei/Documents/personal/hifumi-gl
+3 info version 2.11.0
+4 warn deprecated `publishConfig.ignore` has been replaced by `command.publish.ignore`.
+5 silly isInitialized
+6 silly isInitialized true
+7 silly existsSync /Users/qiaolei/Documents/personal/hifumi-gl/VERSION
+8 silly initialize attempt
+9 info current version 0.0.0
+10 silly isDetachedHead
+11 silly getCurrentBranch
+12 verbose getCurrentBranch master
+13 verbose isDetachedHead false
+14 silly getCurrentBranch
+15 verbose getCurrentBranch master
+16 silly getUpdates
+17 info Checking for updated packages...
+18 silly hasTags
+19 verbose hasTags false
+20 info Comparing with initial commit.
+21 verbose updated @hifumi/ui
+22 verbose updated @hifumi/util
+23 info Checking for prereleased packages...
+24 silly collectDependents
+25 silly isPackageDependentOf @hifumi/ui @hifumi/ui
+26 silly isPackageDependentOf @hifumi/ui @hifumi/util
+27 silly isPackageDependentOf @hifumi/util @hifumi/ui
+28 silly isPackageDependentOf @hifumi/util @hifumi/util
+29 silly collectUpdates
+30 verbose has filtered update @hifumi/ui
+31 verbose has filtered update @hifumi/util
+32 silly initialize success
+33 silly execute attempt
+34 silly addFile /Users/qiaolei/Documents/personal/hifumi-gl/lerna.json
+35 silly runScriptSync preversion undefined
+36 silly runScriptSync preversion @hifumi/ui
+37 silly runScriptSync version @hifumi/ui
+38 silly runScriptSync preversion @hifumi/util
+39 silly runScriptSync version @hifumi/util
+40 silly runScriptSync version undefined
+41 silly addFile /Users/qiaolei/Documents/personal/hifumi-gl/packages/ui/package.json
+42 silly addFile /Users/qiaolei/Documents/personal/hifumi-gl/packages/util/package.json
+43 silly commit v0.0.1
+44 verbose commit [ 'commit', '--no-verify', '-m', 'v0.0.1' ]
+45 error execute caught error
+46 error Error: On branch master
+46 error Your branch is ahead of 'origin/master' by 7 commits.
+46 error   (use "git push" to publish your local commits)
+46 error
+46 error nothing to commit, working tree clean
+46 error
+46 error     at Function.module.exports.sync (/Users/qiaolei/.nvm/versions/node/v10.0.0/lib/node_modules/lerna/node_modules/execa/index.js:303:26)
+46 error     at Function.execSync (/Users/qiaolei/.nvm/versions/node/v10.0.0/lib/node_modules/lerna/lib/ChildProcessUtilities.js:59:30)
+46 error     at Function.commit (/Users/qiaolei/.nvm/versions/node/v10.0.0/lib/node_modules/lerna/lib/GitUtilities.js:94:39)
+46 error     at PublishCommand.gitCommitAndTagVersion (/Users/qiaolei/.nvm/versions/node/v10.0.0/lib/node_modules/lerna/lib/commands/PublishCommand.js:778:30)
+46 error     at PublishCommand.commitAndTagUpdates (/Users/qiaolei/.nvm/versions/node/v10.0.0/lib/node_modules/lerna/lib/commands/PublishCommand.js:740:27)
+46 error     at PublishCommand.execute (/Users/qiaolei/.nvm/versions/node/v10.0.0/lib/node_modules/lerna/lib/commands/PublishCommand.js:329:14)
