@@ -4,7 +4,10 @@ const postcss = require('postcss');
 const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 
-const BUILD_ROOT = '../es';
+const { NODE_ENV } = process.env;
+
+const ES_DIR = '../es';
+const LIB_DIR = '../lib';
 const SRC_DIR = '../components';
 
 const loop = (filePath) => {
@@ -45,8 +48,7 @@ const transform = (filePath) => {
                     fs.writeFile(absolute(buildPath), result.css, err => {
                         if (err) console.log(err);
                     });
-                    console.log('result: ', result);
-                    if (result.map) {
+                    if (result.map && NODE_ENV === 'es') {
                         fs.writeFile((`${absolute(buildPath)}.map`), result.map, err => {
                             if (err) console.log(err);
                         });
@@ -59,7 +61,7 @@ const transform = (filePath) => {
     });
 }
 
-const rePath = (filePath) => filePath.replace(SRC_DIR, BUILD_ROOT);
+const rePath = (filePath) => filePath.replace(SRC_DIR, NODE_ENV === 'es' ? ES_DIR : LIB_DIR);
 
 const absolute = (filePath) => path.join(__dirname, filePath);
 

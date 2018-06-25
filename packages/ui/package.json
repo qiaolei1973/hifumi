@@ -8,8 +8,8 @@
     "clear-lib": "rm -rf ./lib",
     "clear-dist": "rm -rf ./dist",
     "clear-all": "npm run clear-es && npm run clear-lib && npm run  clear-dist",
-    "build-es": "tsc",
-    "build-lib": "babel es -d lib",
+    "build-es": "tsc && cross-env NODE_ENV=es node scripts/styleTransform.js",
+    "build-lib": "babel es -d lib && cross-env NODE_ENV=lib node scripts/styleTransform.js",
     "build-all": "npm run build-es && npm run build-lib",
     "prepublish": "npm run clear-all && npm run build-all",
     "publish": "npm publish --tag latest --access=public",
@@ -42,6 +42,7 @@
     "autoprefixer": "^8.6.3",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "cross-env": "^5.2.0",
     "postcss": "^6.0.23",
     "precss": "^3.1.2"
   }
