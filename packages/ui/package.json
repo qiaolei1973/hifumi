@@ -4,6 +4,8 @@
   "description": "react ui compoents",
   "main": "./lib/index.js",
   "scripts": {
+    "watch-dev": "node scripts/watch",
+    "link-alive": "tsc -p ./tsconfig.lib.json -w",
     "clear-es": "rm -rf ./es",
     "clear-lib": "rm -rf ./lib",
     "clear-dist": "rm -rf ./dist",
