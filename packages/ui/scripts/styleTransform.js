@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const postcss = require('postcss');
+const lessSyntax = require('postcss-less');
 const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 
@@ -14,7 +15,11 @@ const loop = (filePath) => {
     const absolutePath = absolute(filePath)
     const stats = fs.statSync(absolutePath);
     if (stats.isFile()) {
-        isCssFile(filePath) && transform(filePath);
+        if (isCssFile(filePath)) {
+            transform({ filePath, type: 'css' });
+        } else if (isLessFile(filePath)) {
+            transform({ filePath, type: 'less' });
+        }
         return;
     }
     const files = fs.readdirSync(absolutePath);
@@ -23,7 +28,7 @@ const loop = (filePath) => {
     })
 }
 
-const transform = (filePath) => {
+const transform = ({ filePath, type }) => {
     fs.readFile(absolute(filePath), (err, css) => {
         if (err) {
             console.log(err);
@@ -43,6 +48,8 @@ const transform = (filePath) => {
                 from: filePath,
                 to: buildPath,
                 map: { inline: false },
+                // 当文件为less文件时，使用postcss-less来解析词法
+                syntax: type === 'less' ? lessSyntax : null
             })
                 .then((result) => {
                     fs.writeFile(absolute(buildPath), result.css, err => {
@@ -66,6 +73,7 @@ const rePath = (filePath) => filePath.replace(SRC_DIR, NODE_ENV === 'es' ? ES_DI
 const absolute = (filePath) => path.join(__dirname, filePath);
 
 const isCssFile = (filename) => /^css$/.test(filename.split('.').pop());
+const isLessFile = (filename) => /^less$/.test(filename.split('.').pop());
 
 const excu = () => {
     loop(SRC_DIR);

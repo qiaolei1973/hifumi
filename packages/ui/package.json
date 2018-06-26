@@ -10,10 +10,10 @@
     "clear-lib": "rm -rf ./lib",
     "clear-dist": "rm -rf ./dist",
     "clear-all": "npm run clear-es && npm run clear-lib && npm run  clear-dist",
-    "build-es": "tsc && cross-env NODE_ENV=es node scripts/styleTransform.js",
-    "build-lib": "tsc -p ./tsconfig.lib.json && cross-env NODE_ENV=lib node scripts/styleTransform.js",
+    "build-es": "npm run clear-es && tsc && cross-env NODE_ENV=es node scripts/styleTransform.js",
+    "build-lib": "npm run clear-lib && tsc -p ./tsconfig.lib.json && cross-env NODE_ENV=lib node scripts/styleTransform.js",
     "build-all": "npm run build-es && npm run build-lib",
-    "prepublish": "npm run clear-all && npm run build-all",
+    "prepublish": "npm run build-all",
     "publish": "npm publish --tag latest --access=public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -38,6 +38,7 @@
   "homepage": "https://github.com/qiaolei1973/hifumi#readme",
   "dependencies": {
     "antd": "^3.6.3",
+    "classname": "0.0.0",
     "react": "^16.4.1"
   },
   "devDependencies": {
@@ -47,6 +48,7 @@
     "chokidar": "^2.0.4",
     "cross-env": "^5.2.0",
     "postcss": "^6.0.23",
+    "postcss-less": "^2.0.0",
     "precss": "^3.1.2"
   }
 }
