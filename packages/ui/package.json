@@ -1,6 +1,6 @@
 {
   "name": "@hifumi/ui",
-  "version": "0.1.0-2",
+  "version": "0.1.0-3",
   "description": "react ui compoents",
   "main": "./lib/index.js",
   "scripts": {
