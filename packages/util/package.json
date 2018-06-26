@@ -1,0 +1,23 @@
+{
+  "name": "@hifumi/util",
+  "version": "0.1.0-3",
+  "description": "webgl util",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qiaolei1973/hifumi.git"
+  },
+  "keywords": [
+    "webgl",
+    "util"
+  ],
+  "author": "qiaolei",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qiaolei1973/hifumi/issues"
+  },
+  "homepage": "https://github.com/qiaolei1973/hifumi#readme"
+}

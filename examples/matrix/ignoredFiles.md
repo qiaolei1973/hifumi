@@ -1,0 +1,1 @@
+/^(?!\/Users\/qiaolei\/Documents\/personal\/hifumi-gl\/examples\/matrix\/src\/).+\/node_modules\//g
