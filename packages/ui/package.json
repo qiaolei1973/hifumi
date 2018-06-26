@@ -42,9 +42,9 @@
     "autoprefixer": "^8.6.3",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "chokidar": "^2.0.4",
     "cross-env": "^5.2.0",
     "postcss": "^6.0.23",
-    "precss": "^3.1.2",
-    "rollup": "^0.61.2"
+    "precss": "^3.1.2"
   }
 }
