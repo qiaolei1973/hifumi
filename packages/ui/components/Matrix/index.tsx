@@ -29,6 +29,7 @@ export default class Matrix extends React.Component<MatrixProps> {
     }
 
     public render() {
+        console.log('hello');
         const { mat4 } = this.props;
         let mat4Copy = [...mat4]; // floatArray to array.
         const _mat4 = [];
