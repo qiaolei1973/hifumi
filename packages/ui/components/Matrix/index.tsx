@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { InputNumber, Row, Col } from 'antd';
+import InputNumber from 'antd/lib/input-number';
+import Row from 'antd/lib/row'
+import Col from 'antd/lib/col';
+
+import 'antd/lib/input-number/style/css';
+import 'antd/lib/row/style/css';
+import 'antd/lib/col/style/css';
 import './style.css';
 
 type mat4 = ReadonlyArray<number>;
