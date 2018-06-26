@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@hifumi/ui": "0.1.0-0",
-    "@hifumi/util": "0.1.0-0",
+    "@hifumi/ui": "0.1.0-3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts-ts": "2.16.0"
