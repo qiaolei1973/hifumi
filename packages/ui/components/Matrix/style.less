@@ -1,4 +1,10 @@
-.hello {
-    font-size: 12px;
-    display: flex;
+@import "./components/style/themes/default"; 
+
+@matrix-prefix-cls:~"@{hifumi-prefix}";
+
+.@{matrix-prefix-cls} {
+    min-width: 350px;
+    &>div{
+        margin:10px;
+    }
 }
