@@ -1,4 +1,7 @@
 import * as React from 'react';
+import Earth, {
+  Layer,
+} from './Earth';
 import './App.css';
 
 import logo from './logo.svg';
@@ -11,9 +14,11 @@ class App extends React.Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <div className="three-container">
+          <Earth radius={2}>
+            <Layer data={'world.json'} />
+          </Earth>
+        </div>
       </div>
     );
   }
