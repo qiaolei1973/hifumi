@@ -11,6 +11,7 @@ import { default as SphereVectorLayer } from '../texture';
 
 interface Props {
     data: string;
+    onHover: (e: any) => void;
 }
 
 interface State {
@@ -38,6 +39,6 @@ export default class Layer extends React.Component<Props> {
     }
 
     public render() {
-       return <SphereVectorLayer data={this.state.data} parentScene={this.context.baseScene} />;
+        return <SphereVectorLayer data={this.state.data} parentScene={this.context.baseScene} />;
     }
 }

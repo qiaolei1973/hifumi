@@ -6,4 +6,11 @@ export interface CameraContext {
     camera?: PerspectiveCamera;
     radius: number;
     updateScene: () => void;
+    container?: HTMLDivElement | null;
+}
+
+export interface Point {
+    x: number;
+    y: number;
+    z?: number;
 }

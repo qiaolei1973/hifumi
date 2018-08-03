@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FeatureCollection } from 'geojson';
 import * as PropTypes from 'prop-types';
-import { isEqual } from 'underscore';
+import { isEqual } from 'lodash';
 import {
     WebGLRenderer,
     PerspectiveCamera,
@@ -33,10 +33,17 @@ const contextTypes = {
 export default class Texture extends React.Component<Props> {
     protected static contextTypes = contextTypes;
     private bufferCamera = new PerspectiveCamera(70, 2, 1, 1000);
-    private renderTarget = new WebGLRenderTarget(2048, 1024, { minFilter: LinearFilter, magFilter: NearestFilter });
+    private renderTarget = new WebGLRenderTarget(4096, 2048, { minFilter: LinearFilter, magFilter: NearestFilter });
+    private full: Group;
+    private groupPool = {};
+
+    constructor(props: Props) {
+        super(props);
+        this.bufferCamera.position.z = 6.8;
+    }
 
     private _createMapGroupByGeojson(geojson: FeatureCollection): Group {
-        const group = new Group();
+        const full = new Group();
         const { features } = geojson;
 
         const ringToPoints = (ring: number[][]): Vector2[] => {
@@ -62,25 +69,24 @@ export default class Texture extends React.Component<Props> {
             return new Mesh(geometry, material);
         };
 
-        features.forEach(({ geometry, properties }, index) => {
+        features.forEach((feature) => {
             const phoneMaterial = new MeshPhongMaterial({ color: 0xDDDDDD });
-            if (geometry.type === 'MultiPolygon') {
-                geometry.coordinates.forEach(polygon => {
+            const group = new Group();
+            if (feature.geometry.type === 'MultiPolygon') {
+                feature.geometry.coordinates.forEach(polygon => {
                     group.add(createPolygon(polygon, phoneMaterial));
                 });
-            } else if (geometry.type === 'Polygon') {
-                group.add(createPolygon(geometry.coordinates, phoneMaterial));
+            } else if (feature.geometry.type === 'Polygon') {
+                group.add(createPolygon(feature.geometry.coordinates, phoneMaterial));
             }
+            this.groupPool[group.uuid] = group;
+            full.add(group);
         });
-        return group;
+        return full;
     }
 
-    public shouldComponentUpdate(nextProps: Props) {
-        return !isEqual(this.props.data, nextProps.data);
-    }
-
-    public componentDidUpdate() {
-        if (!this.props.data) {
+    private initTextureSphere() {
+        if (!this.props.data || this.full) {
             return;
         }
         const scene = new Scene();
@@ -88,11 +94,22 @@ export default class Texture extends React.Component<Props> {
         scene.add(mesh);
         (this.context.renderer as WebGLRenderer).render(scene, this.bufferCamera, this.renderTarget);
         const sphere = new Mesh(
-            new SphereGeometry(this.context.radius + 0.2, 32, 32),
+            new SphereGeometry(this.context.radius, 32, 32),
             new MeshPhongMaterial({ map: this.renderTarget.texture, transparent: true, opacity: 0.8 })
         );
         this.props.parentScene.add(sphere);
-        this.context.updateScene();
+    }
+
+    public shouldComponentUpdate(nextProps: Props) {
+        return !isEqual(this.props.data, nextProps.data);
+    }
+
+    public componentWillMount() {
+        this.initTextureSphere();
+    }
+
+    public componentDidUpdate() {
+        this.initTextureSphere();
     }
 
     public render() {
